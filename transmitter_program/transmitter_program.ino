@@ -1,17 +1,33 @@
+#include <RH_ASK.h>
+#include <SPI.h>
+
 #define TRANSMIT_PIN 5
-#define PIR_PIN 13
+#define RECEIVE_PIN 2
+#define PIR_PIN 6
+
+RH_ASK driver(2000, RECEIVE_PIN, TRANSMIT_PIN);
+
+const char *msg = "swimmer";
+int previousState;
+int currentState;
 
 void setup() {
-  // put your setup code here, to run once:
-  pinMode(TRANSMIT_PIN, OUTPUT);
+  // put your setup code here, to run once: 
   pinMode(PIR_PIN, INPUT);
+   
+  Serial.begin(9600);
+  
+  if (!driver.init())
+    Serial.println("rf driver init failed");
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  if(digitalRead(PIR_PIN)) {
-    digitalWrite(TRANSMIT_PIN, HIGH);
-  } else {
-    digitalWrite(TRANSMIT_PIN, LOW);
+  previousState = currentState;
+  currentState = digitalRead(PIR_PIN);
+  if(currentState && !previousState) {
+    driver.send((uint8_t *)msg, strlen(msg));
+    driver.waitPacketSent();
+    delay(5000); //Wait for the swimmer to pass
   }
 }
