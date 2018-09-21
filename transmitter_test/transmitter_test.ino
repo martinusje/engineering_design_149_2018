@@ -2,9 +2,9 @@
 #include <SPI.h>
 
 #define TRANSMIT_PIN 5
+#define RECEIVE_PIN 2
 
-RH_ASK driver(2000, 2, TRANSMIT_PIN); // 200bps, TX on D3 (pin 2), RX on D4 (pin 3)
-int period = 1000;
+RH_ASK driver(2000, RECEIVE_PIN, TRANSMIT_PIN);
 
 void setup() {
   // put your setup code here, to run once:
@@ -15,8 +15,8 @@ void setup() {
 }
 
 void loop() {
-  // put your main code here, to run repeatedly:
-  const char *msg = "hello world";
+  // put your main code here, Mo run repeatedly:
+  const char *msg = "swimmer";
   driver.send((uint8_t *)msg, strlen(msg));
   driver.waitPacketSent();
   delay(1000);
