@@ -12,7 +12,6 @@ int intensity = 255;
 
 void setup() {
   // put your setup code here, to run once:
-  pinMode(RECEIVE_PIN, INPUT);
   pinMode(SHUT_PIN, OUTPUT);
   digitalWrite(SHUT_PIN, LOW);
   
@@ -30,7 +29,7 @@ void loop() {
   if (driver.recv(buf, &buflen)) // if message received, save it
   {
     Serial.println((char*)buf); // print received message
-    if(buf == "swimmer") {
+    if(strcmp(buf, "swimmer") == 0) {
       vibrateMotor();
     }
   }
@@ -38,7 +37,7 @@ void loop() {
 
 void vibrateMotor() {
   analogWrite(MOTOR_PIN, intensity);
-  delay(1000);
+  delay(500);
   analogWrite(MOTOR_PIN, 0);
 }
 
