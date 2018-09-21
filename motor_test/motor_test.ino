@@ -1,6 +1,6 @@
-#define MOTOR_PIN 6
+#define MOTOR_PIN 5
 
-int period = 2000;
+int period = 1000;
 
 void setup() {
   // put your setup code here, to run once:

@@ -1,4 +1,4 @@
-#define PIR_PIN 13
+#define PIR_PIN 6
 
 void setup() {
   // put your setup code here, to run once:
