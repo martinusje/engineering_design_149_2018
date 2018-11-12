@@ -3,6 +3,8 @@
 #include <RH_ASK.h>
 #include <SPI.h>
 
+//Hier is nog zo'n test
+
 #define TRANSMIT_PIN 5
 #define RECEIVE_PIN 2
 
