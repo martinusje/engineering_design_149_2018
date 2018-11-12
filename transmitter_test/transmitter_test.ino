@@ -1,5 +1,3 @@
-//Dit zijn test teksten voor branch testen
-
 #include <RH_ASK.h>
 #include <SPI.h>
 
